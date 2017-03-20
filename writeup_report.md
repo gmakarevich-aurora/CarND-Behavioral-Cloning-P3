@@ -12,16 +12,16 @@ The goals / steps of this project are the following:
 ### 1. Submitted files.
 
 My project includes the following files:
-* data.py  containing all the code to load training data, preprocess images, and feed the training data into the model through the generator.
-* model.py containing the code to build the CNN model using keras framework
-* train.py containing the script implementing the training procedure itself
-* drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network
-* writeup_report.md summarizing the results
-* udacity_only_track1.mp4 recording of the simulation in autonomous mode on track1 using model trained udacity-provided data set
-* udacity_only_track2.mp4 recording of the simulation in autonomous mode on track2 using model trained udacity-provided data set
-* full_set_track1.mp4 recording of the simulation in autonomous mode on track1 using model re-trained on complete training set
-* full_set_track2.mp4 recording of the simulation in autonomous mode on track2 using model re-trained on complete training set
+* **data.py**  containing all the code to load training data, preprocess images, and feed the training data into the model through the generator.
+* **model.py** containing the code to build the CNN model using keras framework
+* **train.py** containing the script implementing the training procedure itself
+* **drive.py** for driving the car in autonomous mode
+* **model.h5** containing a trained convolution neural network
+* **writeup_report.md** summarizing the results
+* **udacity_only_track1.mp4** recording of the simulation in autonomous mode on track1 using model trained udacity-provided data set
+* **udacity_only_track2.mp4** recording of the simulation in autonomous mode on track2 using model trained udacity-provided data set
+* **full_set_track1.mp4** recording of the simulation in autonomous mode on track1 using model re-trained on complete training set
+* **full_set_track2.mp4** recording of the simulation in autonomous mode on track2 using model re-trained on complete training set
 
 ### 2. Instructions to test the simulator in autonomous mode.
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
