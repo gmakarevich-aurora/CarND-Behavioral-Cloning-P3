@@ -24,24 +24,9 @@ model = None
 prev_image_array = None
 
 def preprocess_image(img):
-    '''
-    Method for preprocessing images: this method is the same used in drive.py, except this version uses
-    BGR to YUV and drive.py uses RGB to YUV (due to using cv2 to read the image here, where drive.py images are 
-    received in RGB)
-    '''
-    # original shape: 160x320x3, input shape for neural net: 66x200x3
-    # crop to 105x320x3
-    #new_img = img[35:140,:,:]
-    # crop to 40x320x3
     new_img = img[50:140,:,:]
-    # apply subtle blur
     new_img = cv2.GaussianBlur(new_img, (3,3), 0)
-    # scale to 66x200x3 (same as nVidia)
     new_img = cv2.resize(new_img,(200, 66), interpolation = cv2.INTER_AREA)
-    # scale to ?x?x3
-    #new_img = cv2.resize(new_img,(80, 10), interpolation = cv2.INTER_AREA)
-    # convert to YUV color space (as nVidia paper suggests)
-    ####### REMEMBER: IMAGES FROM SIMULATOR COME IN RGB!!!!!! #######
     new_img = cv2.cvtColor(new_img, cv2.COLOR_RGB2YUV)
     return new_img
 
