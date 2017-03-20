@@ -1,4 +1,4 @@
-#**Behavioral Cloning Project** 
+# Behavioral Cloning Project
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
@@ -9,7 +9,7 @@ The goals / steps of this project are the following:
 
 ## Description of the submitted Files.
 
-###1. Submitted files.
+### 1. Submitted files.
 
 My project includes the following files:
 * data.py  containing all the code to load training data, preprocess images, and feed the training data into the model through the generator.
@@ -23,7 +23,7 @@ My project includes the following files:
 * full_set_track1.mp4 recording of the simulation in autonomous mode on track1 using model re-trained on complete training set
 * full_set_track2.mp4 recording of the simulation in autonomous mode on track2 using model re-trained on complete training set
 
-###2. Instructions to test the simulator in autonomous mode.
+### 2. Instructions to test the simulator in autonomous mode.
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
@@ -32,7 +32,7 @@ python drive.py model.h5
 The drive.py file is almost identical to the original file provided by Udacity, except preprocessing the image
 before feeding it into the model for prediction.
 
-###3. Submission code is usable and readable
+### 3. Submission code is usable and readable
 
 The train.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
@@ -45,9 +45,9 @@ as the original images are very noisy.
 
 The model.py contains the code to implement the CNN itself using keras framework.
 
-##Model Architecture and Training Strategy
+## Model Architecture and Training Strategy
 
-###1. Description of the CNN model architecture
+### 1. Description of the CNN model architecture
 
 I have used the model described in ["End to End Learning for Self-Driving Cars"](https://arxiv.org/abs/1604.07316)
 paper by Nvidia. The paper did not provide details on used activation functions, regularization,
@@ -56,7 +56,7 @@ and dropout rates between layers, hence, those I had to introduce by myself.
 After several attempts I have ended up using [ELU](https://arxiv.org/pdf/1511.07289v1.pdf) activation function,
 as it provided the best results in the initial experiments.
 
-###2. Reducing overfitting in the model
+### 2. Reducing overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
 
@@ -74,19 +74,19 @@ dropouts applied. So, final model does not have dropout layers.
 The plot ![training_plot](./figure_plot_udacity.png) demonstrates training and validation
 scores curves. The plot does not demonstrate any signs of the overfitting.
 
-###3. Model parameter tuning
+### 3. Model parameter tuning
 
 The training used an adam optimizer, so the learning rate was not tuned manually (train.py line 59).
 
-###4. Appropriate training data
+### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
 
 For details about how I created the training data, see the next section. 
 
-##Model Architecture and Training Strategy
+## Model Architecture and Training Strategy
 
-###1. Solution Design Approach
+### 1. Solution Design Approach
 
 Following the hint from the mentor, I have concentrated on re-implementing
 the model described at ["End to End Learning for Self-Driving Cars"](https://arxiv.org/abs/1604.07316).
@@ -103,20 +103,22 @@ of "straight" action input could improve the trained model. So, I have introduce
 such input (data.py lines 46-49)
 
 The model was trained using Udacity-provided data set. That was enough to be able to pass the complete lap
-on the track1 - [track1 run udacity only](./udacity_only_track1.mp4). However,
-the same model behaved poorly on the track 2 - [track2 run udacity only](./udacity_only_track2.mp4)
+on the track1 - [udacity only_track1.mp4](./udacity_only_track1.mp4). However,
+the same model behaved poorly on the track 2 - [udacity only_track2.mp4](./udacity_only_track2.mp4)
 
 To generalize the model better, I have decided to collect more data from both track1 and track2.
 
 I have re-trained the model (starting with the previously saved weights) on the complete set,
 including the original Udacity data set.
 
-The trained model was verified by running simulator in autonomous mode on both track1 and track2.
+The trained model was verified by running simulator in autonomous mode on both track1 -
+[full_set_track1.mp4](./full_set_track1.mp4), and track2 - [full_set_track2.mp4](./full_set_track2.mp4)
 
-###2. Final Model Architecture
+### 2. Final Model Architecture
 
 The final model's summary is presented below:
 
+```sh
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
 lambda_1 (Lambda)                (None, 66, 200, 3)    0           lambda_input_1[0][0]             
@@ -157,12 +159,13 @@ elu_8 (ELU)                      (None, 10)            0           dense_3[0][0]
 ____________________________________________________________________________________________________
 dense_4 (Dense)                  (None, 1)             11          elu_8[0][0]                      
 ====================================================================================================
+```
 
 The visual representation of the model is below:
 
 ![model_image](./model.png)
 
-###3. Creation of the Training Set & Training Process
+### 3. Creation of the Training Set & Training Process
 
 My first approach was training the model using Udacity-provided training dataset. While it was good enough
 to train the model to be able to pass the easy track1, it was not good enough to go through more complicated
